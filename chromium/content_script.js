@@ -1,6 +1,7 @@
-function dfs(win) {
+function dfs(doc) {
+    if (doc === null) return;
     let load = null;
-    win.addEventListener("click", e => {
+    doc.addEventListener("click", e => {
         if (e.ctrlKey || e.shiftKey || e.metaKey || e.altKey || e.button !== 0) return;
         let element = e.target;
         for (; ; element = element.parentElement) {
@@ -20,6 +21,6 @@ function dfs(win) {
             location.href = element.href;
         }, 300);
     }, true);
-    for (let iframe of win.document.getElementsByTagName("iframe")) dfs(iframe.contentWindow);
+    for (let iframe of doc.getElementsByTagName("iframe")) dfs(iframe.contentDocument);
 }
-dfs(window);
+dfs(document);
