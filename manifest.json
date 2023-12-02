@@ -4,9 +4,9 @@
     "manifest_version": 3,
     "description": "Open a link in a new tab if and only if you double-click it",
     "icons": {
-        "16": "icon16.jpg",
-        "48": "icon48.jpg",
-        "128": "icon128.jpg"
+        "16": "icons/icon16.jpg",
+        "48": "icons/icon48.jpg",
+        "128": "icons/icon128.jpg"
     },
     "content_scripts": [
         {
