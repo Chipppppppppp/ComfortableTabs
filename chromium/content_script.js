@@ -7,7 +7,6 @@ function dfs(win) {
             if (element === null) return;
             if (element.href !== undefined) break;
         }
-        if (element.target) element.target = "_top";
         e.preventDefault();
         e.stopPropagation();
         if (load !== null) {
