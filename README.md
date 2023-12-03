@@ -5,5 +5,5 @@ This is a chrome extension which enables you to open a link in a new tab if and 
 ダブルクリックした時、またその時のみリンクを新しいタブで開きます。[Death to _blank](https://chromewebstore.google.com/detail/death-to-blank/gneobebnilffgkejpfhlgkmpkipgbcno) と [Tap to Tab](https://chromewebstore.google.com/detail/tap-to-tab/enhajhmncplakageabmopgpodkdgcodd) の組み合わせと比べ、`iframe` タグに対応していることとタブの履歴を保存することが利点です (また Manifest V3 もサポートしています)。
 
 
-![Latest Release](https://img.shields.io/github/v/release/Chipppppppppp/ComfortableTabs?label=latest)(https://github.com/Chipppppppppp/ComfortableTabs/releases)
-![License](https://img.shields.io/github/license/Chipppppppppp/ComfortableTabs)(https://github.com/Chipppppppppp/ComfortableTabs/blob/main/LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/Chipppppppppp/ComfortableTabs?label=latest)](https://github.com/Chipppppppppp/ComfortableTabs/releases)
+[![License](https://img.shields.io/github/license/Chipppppppppp/ComfortableTabs)](https://github.com/Chipppppppppp/ComfortableTabs/blob/main/LICENSE)
