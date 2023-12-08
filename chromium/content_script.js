@@ -59,7 +59,6 @@ function dfs(win) {
 
 dfs(window);
 
-
 let div = document.createElement("div");
 div.style.display = "none";
 div.style.position = "fixed";
