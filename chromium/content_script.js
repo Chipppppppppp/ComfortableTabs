@@ -14,7 +14,6 @@ function dfs(win) {
                 if (!element) return;
                 if (element.href !== undefined) break;
             }
-            element.target = "_top";
             e.preventDefault();
             e.stopPropagation();
             if (element === target) {
@@ -25,7 +24,13 @@ function dfs(win) {
             }
             load = setTimeout(() => {
                 skip = target;
-                target.dispatchEvent(new MouseEvent("click", e));
+                element.target = "_top";
+                target.dispatchEvent(new MouseEvent("click", {
+                    clientX: e.clientX,
+                    clientY: e.clientY,
+                    screenX: e.screenX,
+                    screenY: e.screenY
+                }));
                 target = null;
             }, 300);
             target = element;
@@ -37,6 +42,7 @@ function dfs(win) {
     let doc = win.document;
     if (!doc) doc = win;
 
+    for (let link of doc.links) link.target = "_top";
     doc.querySelectorAll("iframe").forEach(e => dfs(e.contentWindow));
     doc.querySelectorAll("*").forEach(e => dfs(e.shadowRoot));
 
