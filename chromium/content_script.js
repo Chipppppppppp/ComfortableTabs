@@ -26,7 +26,6 @@ function dfs(win) {
             load = setTimeout(() => {
                 skip = target;
                 target.dispatchEvent(new MouseEvent("click", e));
-                target = null;
             }, 300);
             target = element;
         }, true);
@@ -58,28 +57,3 @@ function dfs(win) {
 }
 
 dfs(window);
-
-let div = document.createElement("div");
-div.style.display = "none";
-div.style.position = "fixed";
-div.style.height = "100vh";
-div.style.width = "100vw";
-div.style.top = "0";
-div.style.left = "0";
-div.style.zIndex = 2147483646;
-div.addEventListener("click", () => {
-    clearTimeout(load);
-    div.style.display = "none";
-    chrome.runtime.sendMessage(url);
-});
-document.body.appendChild(div);
-let load = null, url = null;
-
-chrome.runtime.onMessage.addListener(msg => {
-    url = msg;
-    load = setTimeout(() => {
-        div.style.display = "none";
-        location.href = url;
-    }, 300);
-    div.style.display = "block";
-})
