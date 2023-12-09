@@ -26,6 +26,7 @@ function dfs(win) {
             load = setTimeout(() => {
                 skip = target;
                 target.dispatchEvent(new MouseEvent("click", e));
+                target = null;
             }, 300);
             target = element;
         }, true);
