@@ -1,19 +1,17 @@
 let newTabs = new Set;
 
 chrome.tabs.onCreated.addListener(tab => {
-    if (tab.openerTabId !== undefined && tab.pendingUrl === undefined && tab.active) {
+    if (tab.openerTabId !== undefined && tab.status === "complete") {
         chrome.tabs.update(tab.openerTabId, { active: true });
         newTabs.add(tab.id);
     }
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (newTabs.has(tabId)) {
+    if (changeInfo.url !== undefined && newTabs.has(tabId)) {
         newTabs.delete(tabId);
-        if (changeInfo.url.startsWith("http")) {
-            chrome.tabs.remove(tabId);
-            chrome.tabs.update(tab.openerTabId, { url: changeInfo.url });
-        }
+        chrome.tabs.remove(tabId);
+        chrome.tabs.update(tab.openerTabId, { url: changeInfo.url });
     }
 });
 

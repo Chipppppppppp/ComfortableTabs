@@ -34,7 +34,7 @@ function dfs(win) {
                 target = null;
             }, 300);
             target = element;
-        });
+        }, true);
     } catch (_) {
         return;
     }
