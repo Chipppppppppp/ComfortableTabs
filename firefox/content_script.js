@@ -4,11 +4,10 @@ function dfs(win) {
     try {
         let load = null, target = null, skip = null;
         win.addEventListener("beforeunload", () => {
-            if (load) {
+            if (target) {
                 clearTimeout(load);
                 load = null;
                 target = null;
-                skip = null;
             }
         });
         win.addEventListener("click", e => {
