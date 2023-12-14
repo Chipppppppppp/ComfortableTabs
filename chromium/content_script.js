@@ -3,6 +3,14 @@ function dfs(win) {
 
     try {
         let load = null, target = null, skip = null;
+        win.addEventListener("beforeunload", () => {
+            if (load) {
+                clearTimeout(load);
+                load = null;
+                target = null;
+                skip = null;
+            }
+        })
         win.addEventListener("click", e => {
             if (e.ctrlKey || e.shiftKey || e.metaKey || e.altKey || e.button !== 0) return;
             let element = e.target;
@@ -25,12 +33,7 @@ function dfs(win) {
             load = setTimeout(() => {
                 skip = target;
                 element.target = "_top";
-                target.dispatchEvent(new MouseEvent("click", {
-                    clientX: e.clientX,
-                    clientY: e.clientY,
-                    screenX: e.screenX,
-                    screenY: e.screenY
-                }));
+                target.dispatchEvent(new MouseEvent(e.type, e));
                 target = null;
             }, 300);
             target = element;
