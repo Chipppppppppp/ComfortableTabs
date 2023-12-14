@@ -10,7 +10,7 @@ function dfs(win) {
                 target = null;
                 skip = null;
             }
-        })
+        });
         win.addEventListener("click", e => {
             if (e.ctrlKey || e.shiftKey || e.metaKey || e.altKey || e.button !== 0) return;
             let element = e.target;
