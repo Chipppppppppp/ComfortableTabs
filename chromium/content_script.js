@@ -8,34 +8,39 @@ function dfs(win) {
                 clearTimeout(load);
                 load = null;
                 target = null;
+                skip = null;
             }
         });
         win.addEventListener("click", e => {
             if (e.ctrlKey || e.shiftKey || e.metaKey || e.altKey || e.button !== 0) return;
             let element = e.target;
-            if (element === skip) {
+            if (skip && element === skip) {
                 skip = null;
                 return;
             }
             for (; ; element = element.parentElement) {
                 if (!element) return;
-                if (element.href !== undefined) break;
+                if (element.href) break;
             }
             e.preventDefault();
             e.stopPropagation();
-            if (element === target) {
-                clearTimeout(load);
-                target = null;
-                chrome.runtime.sendMessage(element.href);
-                return;
+            if (load) {
+                if (element === target) {
+                    clearTimeout(load);
+                    load = null;
+                    target = null;
+                    chrome.runtime.sendMessage(element.href);
+                }
+            } else {
+                load = setTimeout(() => {
+                    load = null;
+                    target = null;
+                    element.target = "_top";
+                    skip = e.target;
+                    e.target.dispatchEvent(new MouseEvent(e.type, e));
+                }, 300);
+                target = element;
             }
-            load = setTimeout(() => {
-                skip = target;
-                element.target = "_top";
-                target.dispatchEvent(new MouseEvent(e.type, e));
-                target = null;
-            }, 300);
-            target = element;
         }, true);
     } catch (_) {
         return;
