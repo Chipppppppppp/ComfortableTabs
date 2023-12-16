@@ -29,7 +29,9 @@ function dfs(win) {
                     clearTimeout(load);
                     load = null;
                     target = null;
-                    chrome.runtime.sendMessage(element.href);
+                    element.target = "_blank";
+                    skip = e.target;
+                    e.target.dispatchEvent(new MouseEvent(e.type, e));
                 }
             } else {
                 load = setTimeout(() => {
