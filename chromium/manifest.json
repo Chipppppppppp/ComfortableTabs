@@ -1,6 +1,6 @@
 {
     "name": "Comfortable Tabs",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "manifest_version": 3,
     "description": "Open a link in a new tab if and only if you double-click it",
     "icons": {
@@ -10,6 +10,7 @@
     },
     "content_scripts": [
         {
+            "all_frames": true,
             "matches": [
                 "<all_urls>"
             ],
